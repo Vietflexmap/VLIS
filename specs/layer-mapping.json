@@ -1,0 +1,372 @@
+{
+  "specification_version": "0.1-draft",
+  "status": "document_derived_not_implementation_verified",
+  "mapping_key": [
+    "document_kind",
+    "source_profile",
+    "level"
+  ],
+  "mappings": [
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 6,
+      "role": "agro_forestry_theme",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 12,
+      "role": "erosion_deposition_theme",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 18,
+      "role": "single_line_traffic_area_text",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          1
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 21,
+      "role": "single_line_irrigation_area_text",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          1
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 30,
+      "role": "land_block_boundary_lines",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          1
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 32,
+      "role": "previous_land_use",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          1,
+          2,
+          6
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 33,
+      "role": "current_land_use_and_combined_use",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          2
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 35,
+      "role": "display_number",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          2
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 36,
+      "role": "multi_use_allocations",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 39,
+      "role": "subject_count",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          3
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 54,
+      "role": "declared_area",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          3
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 59,
+      "role": "previous_subjects",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          3
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-b-layer-v2-observed",
+      "level": 60,
+      "role": "current_subjects_and_allocations",
+      "evidence": {
+        "source": "DOC-B",
+        "pdf_pages": [
+          3
+        ]
+      }
+    },
+    {
+      "document_kind": "administrative_boundary_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 1,
+      "role": "national_border",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          23
+        ]
+      }
+    },
+    {
+      "document_kind": "administrative_boundary_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 2,
+      "role": "province_boundary",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          23
+        ]
+      }
+    },
+    {
+      "document_kind": "administrative_boundary_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 4,
+      "role": "commune_boundary",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          23
+        ]
+      }
+    },
+    {
+      "document_kind": "administrative_boundary_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 5,
+      "role": "commune_name",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          23
+        ]
+      }
+    },
+    {
+      "document_kind": "administrative_boundary_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 6,
+      "role": "commune_code",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          23
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 6,
+      "role": "agro_forestry_theme",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          22
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 12,
+      "role": "erosion_deposition_theme",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          22
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 30,
+      "role": "land_block_boundary_lines",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 32,
+      "role": "previous_land_use",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 33,
+      "role": "current_land_use_and_combined_use",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 35,
+      "role": "display_number",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 36,
+      "role": "multi_use_allocations",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 39,
+      "role": "subject_count",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 54,
+      "role": "declared_area",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          21
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 59,
+      "role": "previous_subjects",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          22
+        ]
+      }
+    },
+    {
+      "document_kind": "land_inventory_map",
+      "source_profile": "doc-c-stat-2025-observed",
+      "level": 60,
+      "role": "current_subjects_and_allocations",
+      "evidence": {
+        "source": "DOC-C",
+        "pdf_pages": [
+          22
+        ]
+      }
+    }
+  ],
+  "open_conflicts": [
+    "Level 32 has different previous-land-use dialect examples.",
+    "Level 59 separator prose and examples disagree.",
+    "Inventory versus statistics numbering rules require profile-specific resolution.",
+    "Theme label detail differs between DOC-B and DOC-C."
+  ]
+}

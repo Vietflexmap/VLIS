@@ -1,0 +1,45 @@
+{
+  "analysis_record_version": "0.1",
+  "checked_on": "2026-10-02",
+  "sample_name": "VBDTKDesktopBasicSetup_x64.exe",
+  "evidence_level": "metadata_only",
+  "provider_metadata": {
+    "size_bytes": 730488652,
+    "modified_at": "2025-07-12T10:08:47.140Z",
+    "modified_at_is_build_date": false
+  },
+  "download": {
+    "status": "blocked_by_provider_size_limit",
+    "http_status": 413,
+    "limit_bytes": 268435456,
+    "complete_bytes_available": false
+  },
+  "analysis_status": {
+    "hashing": "not_performed",
+    "signature_verification": "not_performed",
+    "pe_analysis": "not_performed",
+    "payload_extraction": "not_performed",
+    "decompilation": "not_performed",
+    "dynamic_execution": "not_performed"
+  },
+  "unknown": {
+    "sha256": null,
+    "authenticode": null,
+    "product_name": null,
+    "product_version": null,
+    "pe_machine": null,
+    "installer_type": null,
+    "runtime": null,
+    "payload_inventory": null,
+    "database_format": null,
+    "gis_sdk": null,
+    "eula": null,
+    "relationship_to_tkkk2024": null
+  },
+  "publication": {
+    "sample_redistributed": false,
+    "private_drive_identifiers_included": false,
+    "proprietary_source_included": false
+  },
+  "next_required_evidence": "Complete local bytes of the selected sample, then hash and inspect before making binary claims."
+}

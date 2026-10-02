@@ -1,0 +1,240 @@
+{
+  "case_catalog_version": "0.1-draft",
+  "artifact_kind": "planned_cases_not_executable_tests",
+  "all_cases_executed": false,
+  "cases": [
+    {
+      "id": "C01",
+      "title": "Combined use does not inflate physical area",
+      "input": {
+        "base_area_m2": "1200",
+        "combined_use_area_m2": "250"
+      },
+      "expected": {
+        "physical_area_m2": "1200",
+        "combined_use_stored_separately": true
+      },
+      "basis": "DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C02",
+      "title": "Level 39 parentheses represent subject count",
+      "input": {
+        "level": 39,
+        "raw_label": "CNV:ONT(4)"
+      },
+      "expected": {
+        "count": 4,
+        "area_allocation_created_from_count": false
+      },
+      "basis": "DOC-B:3",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C03",
+      "title": "Strict area decimal separator",
+      "input": {
+        "level": 54,
+        "raw_label": "1200,50",
+        "mode": "strict"
+      },
+      "expected": {
+        "issue": "INVALID_DECIMAL_SEPARATOR",
+        "raw_preserved": true
+      },
+      "basis": "DOC-C:22",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C04",
+      "title": "Level reuse depends on document kind",
+      "input": {
+        "level": 6,
+        "document_kinds": [
+          "land_inventory_map",
+          "administrative_boundary_map"
+        ]
+      },
+      "expected": {
+        "roles": [
+          "agro_forestry_theme",
+          "commune_code"
+        ]
+      },
+      "basis": "DOC-B:3;DOC-C:23",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C05",
+      "title": "Previous label needs an explicit dialect",
+      "input": {
+        "level": 32,
+        "raw_label": "LUC(350);HNK(150)",
+        "profile_selected": false
+      },
+      "expected": {
+        "issue": "PROFILE_SELECTION_REQUIRED"
+      },
+      "basis": "DOC-B:1;DOC-C:21",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C06",
+      "title": "Self-intersection blocks geometry acceptance",
+      "input": {
+        "wkt": "POLYGON ((0 0,10 10,0 10,10 0,0 0))",
+        "crs_status": "confirmed"
+      },
+      "expected": {
+        "blocking": true,
+        "automatic_unrecorded_repair": false
+      },
+      "basis": "DOC-C:22",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C07",
+      "title": "Conflicting labels within one polygon",
+      "input": {
+        "land_use_labels": [
+          "ONT",
+          "NTS"
+        ],
+        "same_land_block": true
+      },
+      "expected": {
+        "issue": "AMBIGUOUS_LABEL_ASSIGNMENT",
+        "nearest_label_autoselected": false
+      },
+      "basis": "DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C08",
+      "title": "Totals cannot hide overlap and gap",
+      "input": {
+        "overlap_m2": "5",
+        "gap_m2": "5",
+        "sum_area_minus_admin_area_m2": "0"
+      },
+      "expected": {
+        "topology_blocking": true,
+        "area_total_match_overrides_topology": false
+      },
+      "basis": "DOC-C:22-23",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C09",
+      "title": "Area difference at source threshold",
+      "input": {
+        "absolute_difference_m2": "30",
+        "source_profile": "doc-c-stat-2025-observed"
+      },
+      "expected": {
+        "rule": "T06",
+        "threshold_violation": false,
+        "other_rules_still_required": true
+      },
+      "basis": "DOC-C:23",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C10",
+      "title": "Area difference beyond source threshold",
+      "input": {
+        "absolute_difference_m2": "30.01",
+        "source_profile": "doc-c-stat-2025-observed"
+      },
+      "expected": {
+        "rule": "T06",
+        "threshold_violation": true
+      },
+      "basis": "DOC-C:23",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C11",
+      "title": "Unresolved CRS prevents authoritative area calculation",
+      "input": {
+        "crs_status": "unresolved"
+      },
+      "expected": {
+        "issue": "CRS_UNRESOLVED",
+        "business_area_calculation_blocked": true
+      },
+      "basis": "DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C12",
+      "title": "Display number is not a stable identity",
+      "input": {
+        "old_display_number": 12,
+        "new_display_number": 9,
+        "same_internal_block": true
+      },
+      "expected": {
+        "stable_block_id_changes_due_to_numbering": false
+      },
+      "basis": "DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C13",
+      "title": "Missing neighbours leave topology test unevaluated",
+      "input": {
+        "neighbour_boundaries_available": false
+      },
+      "expected": {
+        "rule": "T07",
+        "status": "not_evaluated",
+        "full_validation_pass_claim_allowed": false
+      },
+      "basis": "DOC-C:23",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C14",
+      "title": "Submitted snapshot is immutable",
+      "input": {
+        "state": "pending_review",
+        "edit_requested": true
+      },
+      "expected": {
+        "submitted_snapshot_mutable": false,
+        "new_revision_requires_valid_workflow": true
+      },
+      "basis": "DOC-C:15;DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C15",
+      "title": "Upload receipt is distinct from approval",
+      "input": {
+        "transport_http_status": 200,
+        "approval_event_received": false
+      },
+      "expected": {
+        "approved": false
+      },
+      "basis": "DOC-C:15-17;DESIGN",
+      "execution_status": "not_run"
+    },
+    {
+      "id": "C16",
+      "title": "Lossy polygon hole round-trip is reported",
+      "input": {
+        "source_polygon_has_hole": true,
+        "adapter_preserves_hole": false
+      },
+      "expected": {
+        "round_trip_pass": false,
+        "data_loss_report_required": true
+      },
+      "basis": "WEB-05;DESIGN",
+      "execution_status": "not_run"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "register_version": "0.1-draft",
+  "checked_on": "2026-10-02",
+  "sources": [
+    {
+      "id": "DOC-A",
+      "kind": "user_supplied_pdf",
+      "filename": "HuongDanTKKK24-1.pdf",
+      "pages": 8,
+      "size_bytes": 1814974,
+      "sha256": "46e8f6693b15066b5fbd47f87feaa3e4583898479af14d629ae26e45b5cb7e91",
+      "redistributed": false
+    },
+    {
+      "id": "DOC-B",
+      "kind": "user_supplied_pdf",
+      "filename": "QuyDinhTrinhBayLop_TK2024_Public_06.04.2026.pdf",
+      "pages": 19,
+      "size_bytes": 719833,
+      "sha256": "fb5a1050a6966c21a881418a40f3c06debe3dff08e5c9c610112954b41cba9a3",
+      "redistributed": false
+    },
+    {
+      "id": "DOC-C",
+      "kind": "user_supplied_pdf",
+      "filename": "02.-Tai-Lieu-Huong-dan-TKKK_Version04_2026_bs.pdf",
+      "pages": 23,
+      "size_bytes": 3220065,
+      "sha256": "8ecdeca92e621b56c5a2c543ec9e1422d0efe8efebe36a2ae71b93e9c9fa6d40",
+      "redistributed": false
+    },
+    {
+      "id": "WEB-01",
+      "kind": "primary_web_documentation",
+      "url": "https://tknews.gdla.gov.vn/huong-dan-su-dung-phan-mem-tkkk2024-de-giao-nop-du-lieu/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-02",
+      "kind": "primary_web_documentation",
+      "url": "https://tknews.gdla.gov.vn/ve-phan-mem-thong-ke-kiem-ke-dat-dai-tkkk2024/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-03",
+      "kind": "primary_web_documentation",
+      "url": "https://tknews.gdla.gov.vn/phan-mem-thong-ke-kiem-ke-dat-dai-2-cap/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-04",
+      "kind": "primary_web_documentation",
+      "url": "https://opensource.org/license/mit",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-05",
+      "kind": "primary_web_documentation",
+      "url": "https://gdal.org/en/stable/drivers/vector/dgn.html",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-06",
+      "kind": "primary_web_documentation",
+      "url": "https://gdal.org/en/stable/drivers/vector/dgnv8.html",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-07",
+      "kind": "primary_web_documentation",
+      "url": "https://gdal.org/en/stable/license.html",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-08",
+      "kind": "primary_web_documentation",
+      "url": "https://proj.org/en/stable/about.html",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-09",
+      "kind": "primary_web_documentation",
+      "url": "https://libgeos.org/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-10",
+      "kind": "primary_web_documentation",
+      "url": "https://www.ogc.org/standards/geopackage/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-11",
+      "kind": "primary_web_documentation",
+      "url": "https://docs.protomaps.com/pmtiles/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-12",
+      "kind": "primary_web_documentation",
+      "url": "https://github.com/icsharpcode/ILSpy",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-13",
+      "kind": "primary_web_documentation",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-14",
+      "kind": "primary_web_documentation",
+      "url": "https://constexpr.org/innoextract/",
+      "checked_on": "2026-10-02"
+    },
+    {
+      "id": "WEB-15",
+      "kind": "primary_web_documentation",
+      "url": "https://www.7-zip.org/",
+      "checked_on": "2026-10-02"
+    }
+  ],
+  "observations": [
+    {
+      "id": "F01",
+      "source": "DOC-B",
+      "pdf_pages": [
+        1
+      ],
+      "observation": "Filename contains 06.04.2026; internal title says version 2.0 updated 16.04.2025.",
+      "inference": "Do not infer precedence from filename."
+    },
+    {
+      "id": "F02",
+      "source": "DOC-C",
+      "pdf_pages": [
+        1
+      ],
+      "observation": "Accompanying official letter number/date are blank.",
+      "inference": "Profile requires authority/provenance confirmation."
+    },
+    {
+      "id": "F03",
+      "source": "DOC-C",
+      "pdf_pages": [
+        15,
+        18
+      ],
+      "observation": "Commune-province workflow is described; page 15 still refers to a district account.",
+      "inference": "Administrative hierarchy and roles must be versioned."
+    }
+  ]
+}

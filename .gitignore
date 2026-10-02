@@ -1,0 +1,23 @@
+# Hồ sơ thiết kế không lưu bộ cài, mã dịch ngược hoặc dữ liệu người dùng.
+/private-analysis/
+/decompiled/
+/extracted/
+/tmp/
+/data-private/
+*.exe
+*.dll
+*.msi
+*.cab
+*.pdb
+*.dgn
+*.pdf
+*.zip
+*.7z
+*.rar
+*.log
+.env
+.env.*
+__pycache__/
+*.pyc
+.venv/
+venv/
