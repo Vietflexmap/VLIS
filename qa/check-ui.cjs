@@ -32,6 +32,7 @@ const areaNumber = text => Number(text.replace(/m²/g, '').trim().replace(/\./g,
   await page.waitForFunction(() => !!window.VLISDemo);
   assert.equal(await page.locator('#blocks-layer polygon').count(), 20);
   assert.equal((await current()).blocks.length, 20);
+  assert.equal((await current()).totalAreaM2, 341000);
   pass('20 synthetic regions loaded without external runtime dependencies');
 
   for (const id of ['K001', 'K007', 'K017']) {
@@ -66,7 +67,21 @@ const areaNumber = text => Number(text.replace(/m²/g, '').trim().replace(/\./g,
   assert.notEqual(await page.locator('#land-map').getAttribute('viewBox'), oldBox);
   await click('fit');
   assert.equal(await page.locator('#land-map').getAttribute('viewBox'), oldBox);
-  pass('Layer visibility, theme legend and zoom controls work');
+  await click('measure');
+  const points = await page.locator('#land-map').evaluate(el => {
+    const m = el.getScreenCTM();
+    return [[300, 350], [400, 350]].map(([x, y]) => ({ x: x * m.a + m.e, y: y * m.d + m.f }));
+  });
+  for (const p of points) await page.mouse.click(p.x, p.y);
+  assert.match(await page.locator('#measure-hint').textContent(), /100,0 m/);
+  await click('select');
+  await page.mouse.move(points[0].x, points[0].y);
+  await page.mouse.down();
+  await page.mouse.move(points[0].x + 30, points[0].y + 20, { steps: 4 });
+  await page.mouse.up();
+  assert.notEqual(await page.locator('#land-map').getAttribute('viewBox'), oldBox);
+  await click('fit');
+  pass('Layer visibility, theme legend, zoom, panning and a 100 m ruler measurement work');
 
   await click('validate');
   await page.waitForFunction(() => window.VLISDemo.getState().checked);
@@ -122,6 +137,7 @@ const areaNumber = text => Number(text.replace(/m²/g, '').trim().replace(/\./g,
   pass('Send, review, approve, return and JSON/CSV exports preserve the submitted snapshot');
 
   await click('sample');
+  await page.locator('#toast').waitFor({ state: 'hidden' });
   await page.screenshot({ path: path.join(output, 'desktop.png') });
   for (const [width, height] of [[1920, 1080], [1366, 768], [1024, 768], [390, 844], [320, 740]]) {
     await page.setViewportSize({ width, height });
@@ -134,6 +150,9 @@ const areaNumber = text => Number(text.replace(/m²/g, '').trim().replace(/\./g,
       await page.locator('#info-dialog [data-layer="labels"]').uncheck();
       await page.locator('#info-dialog [data-action="close-dialog"]').first().click();
       assert.equal(await page.locator('#labels-layer').isVisible(), false);
+      await click('open-layers');
+      await page.locator('#info-dialog [data-layer="labels"]').check();
+      await page.locator('#info-dialog [data-action="close-dialog"]').first().click();
       await click('open-inspector');
       assert.match(await page.locator('#dialog-title').textContent(), /K009/);
       await page.locator('#info-dialog [data-action="close-dialog"]').first().click();

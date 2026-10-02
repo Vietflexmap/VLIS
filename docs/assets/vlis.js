@@ -78,7 +78,10 @@
     }).join('');
     $('#labels-layer').innerHTML = state.blocks.map(b => {
       const [x, y] = centroid(b.geometry), road = b.landUse === 'DGT';
-      return `<text x="${x}" y="${polygonY(y) - 2}" class="block-label ${road ? 'road-label' : ''}"><tspan x="${x}">${String(b.number).padStart(2, '0')}</tspan><tspan x="${x}" dy="15">${b.landUse}</tspan></text>`;
+      const displayY = polygonY(y), label = String(b.number).padStart(2, '0');
+      return road
+        ? `<text x="${x}" y="${displayY}" dominant-baseline="middle" transform="rotate(-90 ${x} ${displayY})" class="block-label road-label">${label} · ${b.landUse}</text>`
+        : `<text x="${x}" y="${displayY}" dy="-.25em" class="block-label"><tspan x="${x}">${label}</tspan><tspan x="${x}" dy="1.2em">${b.landUse}</tspan></text>`;
     }).join('');
     $('#boundary-layer').innerHTML = `<polygon points="${pointsString(fixture.outline)}" class="boundary-path"/>`;
     $('#errors-layer').innerHTML = issues().map(i => {
@@ -196,6 +199,8 @@
   function updateScale() {
     const ctm = map.getScreenCTM();
     if (!ctm || !ctm.a) return;
+    map.style.setProperty('--map-label-size', `${11 / ctm.a}px`);
+    map.style.setProperty('--map-road-label-size', `${8.5 / ctm.a}px`);
     const target = 95 / ctm.a;
     const candidates = [10, 20, 50, 100, 200, 500];
     const distance = candidates.reduce((best, value) => Math.abs(value - target) < Math.abs(best - target) ? value : best, 100);
