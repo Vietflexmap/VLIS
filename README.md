@@ -1,6 +1,20 @@
 # VLIS - nền tảng đặc tả mở cho thống kê, kiểm kê đất đai
 
-VLIS tập hợp phân tích nghiệp vụ, hợp đồng dữ liệu và thiết kế các thành phần độc lập để Vietflexmap có thể phát triển mã nguồn MIT dùng lâu dài. Giai đoạn này cung cấp hồ sơ thiết kế, chưa có ứng dụng, bộ cài hoặc mã thực thi nghiệp vụ.
+VLIS tập hợp phân tích nghiệp vụ, hợp đồng dữ liệu và thiết kế các thành phần độc lập để Vietflexmap có thể phát triển mã nguồn MIT dùng lâu dài. Repo hiện có hồ sơ thiết kế và **giao diện mô phỏng trên trình duyệt**, chưa có hệ thống nghiệp vụ, bộ cài VLIS hoặc khả năng giao nộp chính thức.
+
+## Giao diện mô phỏng
+
+[Trang HTML](docs/index.html) minh hoạ bố cục ribbon, danh sách lớp, bản đồ trung tâm, bảng thuộc tính và thông tin khoanh. Có thể chọn/tìm khoanh, bật/tắt lớp, thu phóng, đo khoảng cách, sửa lỗi mẫu, tổng hợp diện tích, thử luồng gửi–duyệt–trả lại và xuất JSON/CSV.
+
+Toàn bộ 20 khoanh và 34,10 ha là **dữ liệu tổng hợp trên lưới cục bộ có đơn vị mét**, không phải địa giới, dữ liệu địa chính hoặc VN-2000. Trạng thái chỉ lưu trong phiên trình duyệt. Giao diện được viết mới theo MIT, không chứa ảnh, icon hoặc mã của Vietbando.
+
+Chạy tại thư mục repo:
+
+```sh
+python3 -m http.server 8765 --directory docs
+```
+
+Mở `http://localhost:8765`. Không cần cài dependency runtime. [Hướng dẫn giao diện và Pages](docs/09-giao-dien-mo-phong.md) giải thích dữ liệu mẫu, giới hạn và cách xuất bản. Workflow [Validate and publish VLIS demo](.github/workflows/pages.yml) kiểm tra giao diện trước khi triển khai; repo cần chọn **Settings → Pages → Source: GitHub Actions**. Có thể theo dõi kết quả và ảnh chụp tại [GitHub Actions](https://github.com/Vietflexmap/VLIS/actions).
 
 ## Trạng thái ngày 02/10/2026
 
@@ -8,6 +22,8 @@ VLIS tập hợp phân tích nghiệp vụ, hợp đồng dữ liệu và thiế
 | --- | --- |
 | Ba PDF người dùng cung cấp | Đã trích xuất nội dung của 50 trang; đối chiếu trực quan các trang chứa quy tắc, lớp dữ liệu và trạng thái hồ sơ |
 | Repo VLIS | Được khởi tạo bằng hồ sơ phân tích và giấy phép MIT cho phần viết mới |
+| Giao diện web | Prototype HTML/CSS/JavaScript và SVG với 20 khoanh tổng hợp; chưa phải lõi nghiệp vụ |
+| GitHub Pages | Đã có workflow kiểm tra và xuất bản; cần bật nguồn GitHub Actions trong cài đặt Pages |
 | `VBDTKDesktopBasicSetup_x64.exe` trên Drive | Đã tìm thấy và đọc metadata: 730.488.652 byte, khoảng 696,65 MiB |
 | Tải bộ cài | Bị từ chối với HTTP 413: giới hạn của kết nối là 268.435.456 byte (256 MiB) |
 | Giải nén, phân tích PE/DLL, dịch ngược | Chưa thực hiện vì chưa nhận được byte của bộ cài |
@@ -27,6 +43,7 @@ Không suy ra .NET, C++, loại CSDL, bộ GIS hoặc thuật toán của bộ c
 7. [Thiết kế độc lập, giấy phép và lựa chọn công nghệ](docs/06-thiet-ke-doc-lap-mit.md).
 8. [Ca kiểm chứng và lộ trình phát triển về sau](docs/07-kiem-chung-va-lo-trinh.md).
 9. [Các vấn đề cần xác minh tiếp](docs/08-cau-hoi-chua-giai-quyet.md).
+10. [Giao diện mô phỏng, dữ liệu mẫu và GitHub Pages](docs/09-giao-dien-mo-phong.md).
 
 Các tệp JSON trong [specs](specs) là bảng mô tả và ca kiểm chứng dự kiến, chưa phải schema chính thức của TKKK hay bộ kiểm thử đã chạy. [evidence](evidence) lưu provenance và trạng thái phân tích.
 

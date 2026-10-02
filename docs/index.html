@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#075ba8">
+  <meta name="description" content="Không gian mô phỏng VLIS: bản đồ khoanh đất, kiểm tra dữ liệu, tổng hợp và quy trình hồ sơ với dữ liệu mẫu.">
+  <title>VLIS — Không gian kiểm kê đất đai</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/vlis.css">
+  <script src="assets/demo-data.js" defer></script>
+  <script src="assets/vlis.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Đến không gian bản đồ</a>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Z M9 3v16 M15 5v16"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4Z M3 12l9 4 9-4 M3 17l9 4 9-4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-inspect" viewBox="0 0 24 24"><path d="m16 16 5 5"/><circle cx="10" cy="10" r="7"/><path d="m7 10 2 2 4-4"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18 M7 16v-5 M12 16V7 M17 16V4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V4h7l2 3h9v13H3V7Z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5V3Z M14 3v6h5 M8 13h8 M8 17h6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12 m-5-5 5 5 5-5 M4 16v5h16v-5"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><path d="M3 9V3h6 M15 3h6v6 M21 15v6h-6 M9 21H3v-6"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+    <symbol id="i-cursor" viewBox="0 0 24 24"><path d="m5 3 14 10-7 1-3 7L5 3Z"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 16 13-13 5 5L8 21l-5-5Z M8 11l2 2 M12 7l2 2 M6 16l2 2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6 M12 7v1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18 M3 15h18 M9 3v18 M15 3v18"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="5" rx="1"/><rect x="2" y="17" width="7" height="5" rx="1"/><rect x="15" y="17" width="7" height="5" rx="1"/><path d="M12 7v5 M5 17v-5h14v5"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 2 8 M4 3v7h7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Z M12 9v5 M12 17v1"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5 M7 17H3V8h18v9h-4 M7 13h10v8H7v-8Z"/></symbol>
+  </defs></svg>
+
+  <header class="app-header">
+    <div class="identity"><div class="brand-mark">V<span>•</span></div><div><strong>VLIS<span class="brand-slash"> / </span><span class="brand-title">Không gian kiểm kê</span></strong><small>VIETFLEXMAP</small></div></div>
+    <div class="header-context"><svg class="icon"><use href="#i-folder"/></svg><span>Hồ sơ minh hoạ <b>2025</b></span><span class="context-separator"></span><span>Đơn vị hành chính mẫu</span></div>
+    <div class="header-actions"><span class="demo-badge">BẢN MÔ PHỎNG</span><button class="icon-button" data-action="help" aria-label="Thông tin bản mô phỏng"><svg class="icon"><use href="#i-info"/></svg></button><a class="repo-link" href="https://github.com/Vietflexmap/VLIS" target="_blank" rel="noopener noreferrer">Mã nguồn MIT</a></div>
+  </header>
+
+  <nav class="main-tabs" aria-label="Không gian làm việc">
+    <button class="tab active" data-view="map" aria-current="page"><svg class="icon"><use href="#i-map"/></svg>Bản đồ</button>
+    <button class="tab" data-view="checks"><svg class="icon"><use href="#i-inspect"/></svg>Kiểm tra <span class="tab-count" id="nav-issues">3</span></button>
+    <button class="tab" data-view="stats"><svg class="icon"><use href="#i-chart"/></svg>Thống kê</button>
+    <button class="tab" data-view="dossier"><svg class="icon"><use href="#i-folder"/></svg>Hồ sơ</button>
+    <button class="tab" data-view="architecture"><svg class="icon"><use href="#i-flow"/></svg>Kiến trúc</button>
+    <div class="nav-end"><span class="document-dot"></span><span id="document-state">Bản nháp</span></div>
+  </nav>
+
+  <section class="ribbon" aria-label="Công cụ">
+    <div class="ribbon-group"><div class="ribbon-tools"><button class="ribbon-large" data-action="sample"><svg class="icon ribbon-icon"><use href="#i-folder"/></svg><span>Dữ liệu mẫu</span></button><button class="ribbon-large" data-action="export"><svg class="icon ribbon-icon"><use href="#i-download"/></svg><span>Xuất hồ sơ</span></button></div><span class="ribbon-caption">Dữ liệu</span></div>
+    <div class="ribbon-group"><div class="ribbon-tools"><button class="ribbon-large active" data-action="select" id="select-tool" aria-pressed="true"><svg class="icon ribbon-icon"><use href="#i-cursor"/></svg><span>Chọn khoanh</span></button><div class="ribbon-stack"><button data-action="fit"><svg class="icon"><use href="#i-fit"/></svg>Toàn cảnh</button><button data-action="measure" id="measure-tool" aria-pressed="false"><svg class="icon"><use href="#i-ruler"/></svg>Đo khoảng cách</button></div></div><span class="ribbon-caption">Bản đồ</span></div>
+    <div class="ribbon-group"><div class="ribbon-tools"><button class="ribbon-large" data-action="validate" id="ribbon-check"><svg class="icon ribbon-icon"><use href="#i-inspect"/></svg><span>Kiểm tra dữ liệu</span></button><button class="ribbon-large" data-action="aggregate" id="ribbon-aggregate"><svg class="icon ribbon-icon"><use href="#i-chart"/></svg><span>Tổng hợp biểu</span></button></div><span class="ribbon-caption">Xử lý hồ sơ mẫu</span></div>
+    <div class="ribbon-group profile-group"><div class="ribbon-stack"><label for="map-theme">Hiển thị theo <select id="map-theme"><option value="landuse">Loại đất</option><option value="quality">Trạng thái kiểm tra</option></select></label><span class="profile-note">Lưới cục bộ mô phỏng · Đơn vị mét</span></div><span class="ribbon-caption">Ngữ cảnh</span></div>
+    <div class="ribbon-group ribbon-last"><div class="ribbon-tools"><button class="ribbon-large" data-action="print"><svg class="icon ribbon-icon"><use href="#i-print"/></svg><span>In bản xem</span></button></div><span class="ribbon-caption">Trình bày</span></div>
+  </section>
+
+  <div class="simulation-notice"><span><svg class="icon"><use href="#i-info"/></svg>Dữ liệu tổng hợp để trải nghiệm giao diện; chưa kết nối hệ thống giao nộp.</span><button data-action="help">Phạm vi mô phỏng</button></div>
+
+  <main class="workspace" id="workspace">
+    <aside class="layer-panel" aria-label="Danh sách lớp">
+      <div class="panel-heading"><span><svg class="icon"><use href="#i-layers"/></svg>Danh sách lớp</span><span class="muted-count">05</span></div>
+      <div class="layer-project"><div class="project-file"><svg class="icon"><use href="#i-file"/></svg><div><strong>khoanh_dat_minh_hoa</strong><span>20 khoanh · Dữ liệu mẫu</span></div></div><div class="project-meta"><span id="project-area">— ha</span><span>Thống kê 2025</span></div></div>
+      <div class="layer-list">
+        <label class="layer-item"><input type="checkbox" data-layer="blocks" checked><span class="layer-swatch parcels"></span><span>Khoanh đất<small>Hình học vùng</small></span><span class="level-tag">30</span></label>
+        <label class="layer-item"><input type="checkbox" data-layer="labels" checked><span class="layer-text-icon">Aa</span><span>Nhãn khoanh đất<small>Số khoanh & loại đất</small></span><span class="level-tag">35</span></label>
+        <label class="layer-item"><input type="checkbox" data-layer="errors" checked><span class="layer-swatch issues"></span><span>Vị trí cần kiểm tra<small id="layer-issue-count">2 lỗi · 1 cảnh báo</small></span><span class="level-tag special">QA</span></label>
+        <label class="layer-item"><input type="checkbox" data-layer="boundary" checked><span class="layer-swatch boundary"></span><span>Ranh phạm vi mẫu<small>Không phải địa giới thực</small></span><span class="level-tag">04</span></label>
+        <label class="layer-item"><input type="checkbox" data-layer="context" checked><span class="layer-swatch water"></span><span>Nền minh hoạ<small>Sông & đường tham chiếu</small></span><span class="level-tag special">BG</span></label>
+      </div>
+      <div class="layer-legend"><div class="section-label">CHÚ GIẢI LOẠI ĐẤT</div><div id="landuse-legend"></div><p>Màu minh hoạ cho giao diện.</p></div>
+      <div class="overview-card"><div class="section-label">TOÀN CẢNH</div><svg id="overview-map" viewBox="0 0 980 620" aria-label="Toàn cảnh phạm vi dữ liệu mẫu"></svg><button class="text-button" data-action="fit">Về toàn cảnh</button></div>
+      <div class="layer-bottom"><span class="version-chip">UI 0.2</span><a href="https://github.com/Vietflexmap/VLIS/tree/main/docs" target="_blank" rel="noopener noreferrer">Hồ sơ thiết kế</a></div>
+    </aside>
+
+    <section class="main-surface">
+      <div class="map-shell" id="map-view">
+        <div class="map-topline"><div><span class="eyebrow">BẢN ĐỒ KHOANH ĐẤT</span><strong>Phạm vi minh hoạ <span>01</span></strong></div><div class="map-badges"><span id="map-quality-badge">2 vị trí cần sửa</span><span class="subtle-badge">Nhãn & ranh mẫu</span></div></div>
+        <div class="map-stage" id="map-stage">
+          <svg id="land-map" viewBox="0 0 980 620" role="group" aria-label="Bản đồ khoanh đất mô phỏng; chọn một vùng để xem thuộc tính">
+            <defs><pattern id="map-grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#c5cbd1" stroke-width=".55" opacity=".35"/></pattern><filter id="selected-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#093552" flood-opacity=".2"/></filter></defs>
+            <rect x="-10000" y="-10000" width="20000" height="20000" fill="#eef1ed"/>
+            <rect x="-10000" y="-10000" width="20000" height="20000" fill="url(#map-grid)"/>
+            <g id="context-layer"><path d="M900 -100C795 95 1000 150 893 305S747 444 893 690" fill="none" stroke="#c3deeb" stroke-width="67"/><path d="M900 -100C795 95 1000 150 893 305S747 444 893 690" fill="none" stroke="#93c1d5" stroke-width="1.2" stroke-dasharray="6 7"/><path d="M-50 28 375 33 680 18 1000 52" stroke="#fff" stroke-width="18" fill="none"/><path d="M-50 28 375 33 680 18 1000 52" stroke="#d4d2c9" stroke-width="1.4" fill="none"/><text x="605" y="27" class="context-label">ĐƯỜNG THAM CHIẾU</text><text x="879" y="333" class="river-label" transform="rotate(-57 879 333)">Sông minh hoạ</text></g>
+            <g id="blocks-layer"></g><g id="boundary-layer"></g><g id="labels-layer"></g><g id="errors-layer"></g><g id="measure-layer"></g>
+          </svg>
+          <div class="map-zoom"><button data-action="zoom-in" aria-label="Phóng to">+</button><button data-action="zoom-out" aria-label="Thu nhỏ">−</button><button data-action="fit" aria-label="Xem toàn cảnh"><svg class="icon"><use href="#i-fit"/></svg></button></div>
+          <div class="north-indicator" aria-label="Trục bắc quy ước của lưới mẫu"><span>B</span><svg viewBox="0 0 20 38"><path d="M10 3 17 28 10 23 3 28Z" fill="#365666"/><path d="M10 3v20l7 5Z" fill="#a4b3ba"/></svg></div>
+          <div class="map-scale"><span id="scale-label">100 m</span><div id="scale-line"></div></div>
+          <div class="map-attribution">Lưới cục bộ mô phỏng · Không phải ranh giới thực</div>
+          <div class="measure-hint" id="measure-hint" hidden>Chọn hai điểm để đo khoảng cách trên lưới mẫu.</div>
+        </div>
+        <div class="map-summary"><div><span class="summary-marker"></span><span><b id="summary-blocks">20</b> khoanh đất</span></div><div><span>Diện tích vật lý</span><b id="summary-area">— ha</b></div><div class="map-selection"><span id="selection-summary">Đang chọn khoanh K009</span></div></div>
+      </div>
+      <section class="content-view" id="checks-view" hidden></section>
+      <section class="content-view" id="stats-view" hidden></section>
+      <section class="content-view" id="dossier-view" hidden></section>
+      <section class="content-view" id="architecture-view" hidden></section>
+
+      <section class="attribute-panel" aria-label="Dữ liệu thuộc tính">
+        <div class="attribute-toolbar"><div class="attribute-tabs" role="tablist" aria-label="Bảng dưới bản đồ"><button class="active" role="tab" aria-selected="true" data-table="attributes"><svg class="icon"><use href="#i-grid"/></svg>Thuộc tính <span>20</span></button><button role="tab" aria-selected="false" data-table="issues">Kết quả kiểm tra <span id="table-issues">3</span></button><button role="tab" aria-selected="false" data-table="history">Nhật ký</button></div><div class="table-search"><svg class="icon"><use href="#i-search"/></svg><input id="block-search" aria-label="Tìm khoanh đất" placeholder="Tìm số khoanh, mã đất…" autocomplete="off"></div></div>
+        <div class="table-scroll" id="attribute-content"></div>
+        <div class="table-footer"><span id="table-record-count">20 bản ghi</span><span>Diện tích: m² · Số liệu tổng hợp từ hình học mẫu</span></div>
+      </section>
+    </section>
+
+    <aside class="inspector-panel" aria-label="Thông tin khoanh đất">
+      <div class="panel-heading"><span><svg class="icon"><use href="#i-info"/></svg>Thông tin khoanh</span><span class="level-tag special">ID</span></div>
+      <div id="inspector-content"></div>
+      <div class="inspector-footnote"><svg class="icon"><use href="#i-file"/></svg><p>Chọn một khoanh trên bản đồ hoặc trong bảng để đối chiếu thuộc tính.</p></div>
+    </aside>
+  </main>
+  <footer class="status-bar"><div><span class="status-ready"></span><span id="status-message">Sẵn sàng · Dữ liệu mẫu đã nạp</span></div><div><span id="coordinate-status">E: — &nbsp; N: —</span><span class="status-divider">|</span><span id="zoom-status">Thu phóng 100%</span><span class="status-divider">|</span><span>VLIS · MIT</span></div></footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title">Về bản mô phỏng VLIS</h2><button class="icon-button" data-action="close-dialog" aria-label="Đóng">×</button></div><div class="dialog-body"><p>Trải nghiệm bố cục ribbon, bản đồ, lớp dữ liệu, bảng thuộc tính và quy trình hồ sơ trên trình duyệt.</p><ul><li>20 khoanh đất được tạo tổng hợp trên lưới cục bộ có đơn vị mét.</li><li>Kiểm tra, sửa dữ liệu mẫu, tổng hợp và các trạng thái hồ sơ chỉ diễn ra trong phiên này.</li><li>Chưa đọc DGN hoặc bộ cài, chưa dùng VN-2000 và chưa gửi dữ liệu tới hệ thống cơ quan.</li></ul><p>Giao diện và dữ liệu mẫu được viết mới cho VLIS dưới giấy phép MIT. Có thể xuất JSON hoặc CSV để xem cấu trúc mẫu.</p></div><div class="dialog-footer"><button class="button primary" data-action="close-dialog">Đã hiểu</button></div></dialog>
+  <noscript><div class="no-script">Cần bật JavaScript để trải nghiệm giao diện mô phỏng.</div></noscript>
+</body>
+</html>

@@ -4,7 +4,9 @@
 
 Đã trích xuất text của ba PDF, kiểm tra số trang và SHA-256. Đã đối chiếu trực quan DOC-B tr.1-3 và DOC-C tr.15,22-23 để kiểm tra bảng level, dấu phân cách, mức xử lý lỗi và trạng thái hồ sơ. Đã kiểm tra nguồn chính thức của TKKK và tài liệu gốc của các công nghệ trong shortlist.
 
-Repo được kiểm tra JSON có thể parse, liên kết nội bộ có đích tồn tại, mã nguồn chứng cứ khớp giữa bảng và manifest, và không có installer/DLL/PDF nguồn/mã dịch ngược/dữ liệu riêng tư. Đây là kiểm tra chất lượng hồ sơ. Chưa chạy phần mềm gốc, chưa có implementation VLIS, chưa có ca conformance nghiệp vụ đạt PASS.
+Repo được kiểm tra JSON có thể parse, liên kết nội bộ có đích tồn tại, mã nguồn chứng cứ khớp giữa bảng và manifest, và không có installer/DLL/PDF nguồn/mã dịch ngược/dữ liệu riêng tư. Đây là kiểm tra chất lượng hồ sơ. Chưa chạy phần mềm gốc, chưa có lõi nghiệp vụ VLIS, chưa có ca conformance nghiệp vụ đạt PASS.
+
+Đã bổ sung giao diện mô phỏng và [kiểm tra trình duyệt](../qa/check-ui.cjs) riêng cho tương tác UI: đồng bộ bản đồ/bảng/thông tin, chặn tổng hợp khi có lỗi mẫu, không cộng trùng đất kết hợp, snapshot và các kích thước màn hình. Kết quả thực tế được ghi ở mỗi lần chạy [Actions](https://github.com/Vietflexmap/VLIS/actions) và artifact `vlis-ui-qa`; không dùng kết quả này để đổi trạng thái C01–C16.
 
 ## Ca kiểm chứng dự kiến
 
@@ -47,7 +49,7 @@ Các fixture dưới đây là dữ liệu tổng hợp cho thiết kế, không
 | G3 - triển khai độc lập về sau | Chọn runtime, viết adapter và lõi theo contract | Kiểm thử thực, sai khác có giải thích, không phụ thuộc mã proprietary chưa được phép |
 | G4 - tương thích và vận hành | Đối soát với nguồn, thử gói và quy trình được chấp nhận | Kết quả thực trên mẫu hợp lệ; hướng dẫn rollback/migration; audit đầy đủ |
 
-Lần này chỉ tạo hồ sơ G0. G1 chưa hoàn thành vì giới hạn tải. G2-G4 là lộ trình, chưa được thực hiện và chưa có lịch hay ngân sách được cam kết.
+Phần nghiên cứu hiện ở G0. Giao diện mô phỏng chỉ hỗ trợ xem xét thiết kế thao tác, không chứng minh G2–G4 hoàn tất. G1 chưa hoàn thành vì giới hạn tải. G2-G4 là lộ trình, chưa có lịch hay ngân sách được cam kết.
 
 ## Duy trì dài hạn
 

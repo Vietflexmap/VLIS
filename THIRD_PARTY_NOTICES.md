@@ -4,7 +4,11 @@ Nội dung viết mới trong repo được cấp MIT theo [LICENSE](LICENSE). N
 
 ## Không có dependency runtime được đóng gói
 
-Repo hiện chỉ có Markdown, JSON và chính sách Git. Các công cụ/thư viện bên dưới là nguồn tham khảo hoặc ứng viên, chưa được vendoring, cài đặt làm dependency hay phân phối dưới license của VLIS.
+Giao diện mô phỏng dùng HTML, CSS, JavaScript và SVG viết mới, font hệ thống và dữ liệu tổng hợp. Không có thư viện runtime, font ngoài, bản đồ nền mạng hoặc tài sản Vietbando được đóng gói. Ảnh tham chiếu chỉ dùng để nhận biết bố cục ribbon/lớp/bảng; không phân phối lại trong repo.
+
+Playwright 1.62.1 (Apache-2.0) chỉ được cài tạm trong môi trường QA của GitHub Actions, không nằm trong trang web. Các action do GitHub duy trì chỉ phục vụ kiểm tra/triển khai; không là dependency runtime. Giấy phép MIT của VLIS không thay thế license của các công cụ này.
+
+Các công cụ/thư viện bên dưới là nguồn tham khảo hoặc ứng viên, chưa được vendoring hay phân phối dưới license của VLIS.
 
 | Nguồn/ứng viên | License/thông tin liên quan | Cách xử lý khi triển khai |
 | --- | --- | --- |
